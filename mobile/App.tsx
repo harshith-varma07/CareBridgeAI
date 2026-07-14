@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PaperProvider } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
@@ -8,8 +8,10 @@ import { store } from './src/store';
 import { appTheme } from './src/theme';
 
 const navigationTheme = {
+  ...DefaultTheme,
   dark: false,
   colors: {
+    ...DefaultTheme.colors,
     primary: appTheme.colors.primary,
     background: appTheme.colors.background,
     card: appTheme.colors.surface,
