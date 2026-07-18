@@ -1,6 +1,7 @@
 node_modules/
 .env
 .env.*
+!.env.example
 __pycache__/
 *.pyc
 .pytest_cache/
@@ -10,3 +11,38 @@ dist/
 .expo/
 .DS_Store
 *.log
+*.pem
+*.key
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+Desktop.ini
+.Spotlight-V100
+.Trashes
+
+# Build artifacts
+build/
+*.tgz
+
+# Mobile
+android/app/google-services.json
+ios/GoogleService-Info.plist
+*.jks
+*.keystore
+
+# AI Service
+ai-service/.venv/
+ai-service/training/models/*.pkl
+ai-service/training/models/*.joblib
+ai-service/training/dataset/*.csv
+*.npy
+
+# Docker
+.docker/

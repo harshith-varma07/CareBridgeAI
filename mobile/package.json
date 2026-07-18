@@ -6,30 +6,32 @@
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
-    "android:usb": "adb reverse tcp:8081 tcp:8081 && adb reverse tcp:8082 tcp:8082 && expo start --dev-client",
     "ios": "expo run:ios"
   },
   "dependencies": {
-    "@expo/vector-icons": "^15.1.1",
-    "@react-native-community/slider": "^5.2.0",
-    "@react-navigation/bottom-tabs": "^7.18.8",
-    "@react-navigation/native": "^7.3.8",
-    "@react-navigation/native-stack": "^7.17.10",
+    "@expo/vector-icons": "^14.0.4",
+    "@react-native-community/slider": "4.5.6",
+    "@react-navigation/bottom-tabs": "^7.3.10",
+    "@react-navigation/native": "^7.1.6",
+    "@react-navigation/native-stack": "^7.3.10",
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.7",
-    "expo": "^57.0.4",
-    "expo-status-bar": "^57.0.0",
-    "react": "^19.2.7",
-    "react-hook-form": "^7.81.0",
-    "react-native": "^0.86.0",
-    "react-native-gesture-handler": "^3.0.2",
-    "react-native-paper": "^5.15.3",
-    "react-native-safe-area-context": "^5.8.0",
-    "react-native-screens": "^4.26.0",
-    "react-redux": "^9.1.2",
-    "victory-native": "^41.26.0"
+    "expo": "~53.0.0",
+    "expo-font": "~13.3.2",
+    "expo-status-bar": "~2.2.3",
+    "react": "19.0.0",
+    "react-hook-form": "^7.54.0",
+    "react-native": "0.79.6",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-paper": "^5.12.5",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-vector-icons": "^10.2.0",
+    "react-redux": "^9.1.2"
   },
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "@babel/core": "^7.25.0",
+    "@types/react": "~19.0.10",
+    "typescript": "~5.8.3"
   }
 }

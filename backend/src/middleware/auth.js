@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { User } from '../models/User.js';
+import { env } from '../config/env.js';
 
 export const authRequired = async (req, res, next) => {
   try {
@@ -8,7 +9,7 @@ export const authRequired = async (req, res, next) => {
       return res.status(401).json({ message: 'Missing token' });
     }
     const token = raw.slice(7);
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'dev-secret');
+    const decoded = jwt.verify(token, env.JWT_SECRET);
     const user = await User.findById(decoded.sub);
     if (!user) {
       return res.status(401).json({ message: 'Invalid token' });

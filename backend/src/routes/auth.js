@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { body, matchedData, validationResult } from 'express-validator';
 import { User } from '../models/User.js';
+import { env } from '../config/env.js';
 
 export const authRouter = express.Router();
 
@@ -12,6 +13,7 @@ authRouter.post(
   body('email').isEmail(),
   body('password').isLength({ min: 8 }),
   body('role').isIn(['PATIENT', 'DOCTOR', 'ADMIN']),
+  body('hospitalId').optional().isString().trim(),
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
@@ -37,6 +39,6 @@ authRouter.post('/login', body('email').isEmail(), body('password').isString(), 
   const ok = await bcrypt.compare(password, user.passwordHash);
   if (!ok) return res.status(401).json({ message: 'Invalid credentials' });
 
-  const token = jwt.sign({ sub: user.id, role: user.role }, process.env.JWT_SECRET || 'dev-secret', { expiresIn: '1d' });
+  const token = jwt.sign({ sub: user.id, role: user.role }, env.JWT_SECRET, { expiresIn: '1d' });
   return res.json({ token, user: { id: user.id, role: user.role, name: user.name } });
 });

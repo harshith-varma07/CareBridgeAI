@@ -6,6 +6,7 @@ import { RiskReport } from '../models/RiskReport.js';
 import { Patient } from '../models/Patient.js';
 import { authRequired } from '../middleware/auth.js';
 import { analyzeWithAiService } from '../services/aiService.js';
+import { createRiskNotifications } from '../services/notificationService.js';
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 8 * 1024 * 1024 } });
 export const responsesRouter = express.Router();
@@ -43,6 +44,12 @@ responsesRouter.post(
 
     const aiResult = await analyzeWithAiService(payload);
     const report = await RiskReport.create({ ...aiResult, patientId: payload.patientId, dailyResponseId: dailyResponse.id });
+
+    // Generate notifications based on risk level
+    const patient = await Patient.findById(payload.patientId);
+    if (patient) {
+      await createRiskNotifications(patient, report);
+    }
 
     return res.status(201).json({ dailyResponse, report });
   }
